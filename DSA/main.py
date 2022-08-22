@@ -1,43 +1,36 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-from typing import Dict, Any
-
-records = {}
-
 
 class PhoneBook:
+    """Phonebook implementation using dictionary as storage"""
 
     def __init__(self):
-        self.records = records
+        """Creates an empty Phonebook"""
+        self.records = {}
 
-    def add(self, name, phone_number):
-        self.records[len(self.records)] = {'name': name, 'phone': phone_number}
+    def add(self, contact_name, phone_number):
+        """Adds a contact with name and phone_number to the phonebook storage"""
+        self.records[contact_name] = phone_number
 
-    def remove(self, name):
-        for data in self.records:
-            if name == self.records[data].get('name') or name == self.records[data].get('phone'):
-                del self.records[data]
-            else:
-                print("Name not found!!!")
+    def remove(self, data):
+        """Removes a contact from the phonebook if the name provided matches a data"""
+        if data in self.records:
+            del self.records[data]
+        else:
+            print("Name not found!!!")
 
-    def search(self, name):
-        for data in self.records:
-            if name == self.records[data].get('name') or name == self.records[data].get('phone'):
-                for info in self.records[data]:
-                    print(info.value)
-                #   print(f"{name.capitalize()} - {self.records[name]}")
-
-
-            else:
-                print("Name not found!!!")
+    def search(self, contact_name):
+        """Returns a contact details if the name provided matches a data in the phonebook"""
+        if contact_name in self.records:
+            print(f"{contact_name.capitalize()} - {self.records[contact_name]}")
+        else:
+            print("Name not found!!!")
 
     def list(self):
-        for name in self.records:
-            print(f"{name.capitalize()} - {self.records[name]}")
+        """Returns record of all contacts in the phonebook"""
+        for data in self.records:
+            print(f"{data.capitalize()} - {self.records[data]}")
 
     def num_of_records(self):
+        """Returns the number of contacts in the phonebook"""
         return len(self.records)
 
 
@@ -45,7 +38,8 @@ class PhoneBook:
 if __name__ == '__main__':
     import sys
 
-    phone_book = PhoneBook()
+    phone_book = PhoneBook()  # Creates a  new phonebook when the script is run
+
     while True:
 
         print("_____PhoneBook_____")
@@ -53,31 +47,33 @@ if __name__ == '__main__':
               "2. Search Contact\n"
               "3. Delete Contact\n"
               "4. View Contacts\n"
-              "5. Exit\n")
+              "5. Number of Contacts\n"
+              "6. Exit\n")
 
-        choice = int(input("--> "))
+        choice = input("--> ")
 
-        if choice == 1:
+        if choice == '1':
 
             name = input("Name: ")
-            contact = int(input("Phone No: "))
+            contact = input("Phone No: ")
             phone_book.add(name, contact)
 
-        elif choice == 2:
+        elif choice == '2':
             name = input("Name: ")
-            phone_book.search(f"{name}")
+            phone_book.search(name)
 
-        elif choice == 3:
+        elif choice == '3':
             name = input("Name: ")
-            phone_book.remove(f"{name}")
+            phone_book.remove(name)
 
-        elif choice == 4:
+        elif choice == '4':
             phone_book.list()
 
-        elif choice == 5:
+        elif choice == '5':
+            print(phone_book.num_of_records())
+
+        elif choice == '6':
             sys.exit()
 
         else:
             print("Invalid input!!!")
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

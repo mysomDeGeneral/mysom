@@ -1,4 +1,3 @@
-
 class PhoneBook:
     """Phonebook implementation using dictionary as storage"""
 
@@ -7,13 +6,13 @@ class PhoneBook:
         self.records = {}
 
     def add(self, contact_name, phone_number):
-        """Adds a contact with name and phone_number to the phonebook storage"""
+        """Adds a contact with name and phone_number"""
         self.records[contact_name] = phone_number
 
-    def remove(self, data):
+    def remove(self, contact_name):
         """Removes a contact from the phonebook if the name provided matches a data"""
-        if data in self.records:
-            del self.records[data]
+        if contact_name in self.records:
+            del self.records[contact_name]
         else:
             print("Name not found!!!")
 
@@ -26,7 +25,7 @@ class PhoneBook:
 
     def list(self):
         """Returns record of all contacts in the phonebook"""
-        for data in self.records:
+        for data in sorted(self.records):
             print(f"{data.capitalize()} - {self.records[data]}")
 
     def num_of_records(self):
@@ -34,7 +33,6 @@ class PhoneBook:
         return len(self.records)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     import sys
 
@@ -73,7 +71,7 @@ if __name__ == '__main__':
             print(phone_book.num_of_records())
 
         elif choice == '6':
-            sys.exit()
+            sys.exit("Thanks for using our service, Bye!")
 
         else:
             print("Invalid input!!!")

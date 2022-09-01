@@ -13,7 +13,7 @@ class PhoneBook(object):
             return self.name + '-' + self.phone_number
 
     def __init__(self):
-        self.record = []
+        self.record = {}
 
     def __len__(self):
         return len(self.record)
@@ -39,7 +39,7 @@ class PhoneBook(object):
         return 'Name not found!!!'
 
     def list_contacts(self):
-        for i in range(len(self.record)):
+        for i in self.record:
             return self.record[i]
 
 
